@@ -200,6 +200,8 @@ commands = {
     "cat": cat_command
 }
 
+token = open("token.txt", "r").read()
+
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user.display_name}')
@@ -225,7 +227,7 @@ async def reconnect_loop():
         if bot.is_closed():
             print('Bot is disconnected, attempting to reconnect...')
             try:
-                await bot.start('MTEyNTQ3NTk2ODAyMzI3NzYwOA.G8sC5U.7zdn5NGy5qkCiIH5XJjWG0bx6hkFUkJE9dlHJw')
+                await bot.start(token)
                 print('Reconnect successful.')
                 break
             except Exception as e:
@@ -234,7 +236,7 @@ async def reconnect_loop():
 
 async def main():
     try:
-        await bot.start('MTEyNTQ3NTk2ODAyMzI3NzYwOA.G8sC5U.7zdn5NGy5qkCiIH5XJjWG0bx6hkFUkJE9dlHJw')
+        await bot.start(token)
     except KeyboardInterrupt:
         pass
     except Exception as e:
